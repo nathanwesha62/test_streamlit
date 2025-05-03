@@ -30,8 +30,7 @@ if "question" not in st.session_state:
         if response.status_code == 200:
             question_text = response.text.strip()
             st.session_state.question = question_text
-            st.experimental_rerun()
-            st.stop()
+            st.rerun()
         else:
             st.error("Failed to fetch question. Please try again.")
 
