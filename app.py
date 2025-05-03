@@ -4,7 +4,8 @@ import requests
 # Constants (replace with your actual API key and channel token)
 API_KEY_question_generator = "5rblfHfn.IkKVUJZy4shYcAYNVMLEHlMR5woR3kal"
 API_KEY_answer_eval = "0ldh7pzP.ThAVGtU3QHgVwdStzZCGkD54SnPSUisK"
-QUESTION_ENDPOINT = f"https://payload.vextapp.com/hook/1FK8L012RF/catch/$(channel_token)"
+QUESTION_ENDPOINT_generator = "https://payload.vextapp.com/hook/3U7LL8D63P/catch/$(channel_token)"
+QUESTION_ENDPOINT_eval = "https://payload.vextapp.com/hook/1FK8L012RF/catch/$(channel_token)"
 
 # Streamlit App
 st.set_page_config(page_title="UPSC Question Generator", layout="centered")
@@ -24,7 +25,7 @@ if "question" not in st.session_state:
             "Apikey": f"Api-Key {API_KEY_question_generator}"
         }
 
-        response = requests.post(QUESTION_ENDPOINT, json=payload, headers=headers)
+        response = requests.post(QUESTION_ENDPOINT_generator, json=payload, headers=headers)
 
         if response.status_code == 200:
             question_text = response.text.strip()
@@ -51,7 +52,7 @@ else:
             "Apikey": f"Api-Key {API_KEY_answer_eval}"
         }
 
-        response = requests.post(QUESTION_ENDPOINT, json=payload, headers=headers)
+        response = requests.post(QUESTION_ENDPOINT_eval, json=payload, headers=headers)
 
         if response.status_code == 200:
             st.subheader("Feedback:")
