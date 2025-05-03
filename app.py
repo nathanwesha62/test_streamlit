@@ -31,6 +31,7 @@ if "question" not in st.session_state:
             question_text = response.text.strip()
             st.session_state.question = question_text
             st.experimental_rerun()
+            st.stop()
         else:
             st.error("Failed to fetch question. Please try again.")
 
