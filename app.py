@@ -29,11 +29,13 @@ if "question" not in st.session_state:
         response = requests.post(QUESTION_ENDPOINT_generator, json=payload, headers=headers)
 
         if response.status_code == 200:
-            question_text = response.text.strip()
+            question_text = response.json().get("text", "").strip()
             st.session_state.question = question_text
             st.rerun()
         else:
             st.error("Failed to fetch question. Please try again.")
+
+
 
 # Step 2: Show question and collect user's answer
 else:
